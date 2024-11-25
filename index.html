@@ -37,10 +37,12 @@
           id="model4"
           src="elephant blender\elephant blender\ELE.glb"
         ></a-asset-item>
+
         <a-asset-item
           id="model5"
           src="elephant blender\elephant blender\ELE.glb"
         ></a-asset-item>
+
         <a-asset-item
           id="model6"
           src="elephant blender\elephant blender\ELE.glb"
@@ -82,7 +84,6 @@
         <a-camera position="0 0 0" look-controls="enabled: true"></a-camera>
       </a-nft>
 
-      <!-- Model with animation -->
       <a-entity mindar-image-target="targetIndex: 0" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -92,6 +93,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 1" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -101,6 +103,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 2" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -110,6 +113,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 3" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -119,6 +123,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 4">
         <a-gltf-model
           rotation="0 -15 0"
@@ -128,6 +133,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 5" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -137,6 +143,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 6" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -146,6 +153,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 7" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -155,6 +163,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 8" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -164,6 +173,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 9" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -173,6 +183,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 10" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -182,6 +193,7 @@
           animation-mixer="clip: *; loop: repeat;"
         ></a-gltf-model>
       </a-entity>
+
       <a-entity mindar-image-target="targetIndex: 11" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -219,35 +231,87 @@
         // Add event listener for the image icon
         const playAudioIcon = document.getElementById("playAudioIcon");
         playAudioIcon.addEventListener("click", () => {
-          console.log("Icon clicked, mute state:", isMuted);
+          console.log("Audio icon clicked."); // Debugging log
           if (isMuted) {
-            elephantAudio.volume = 1.0; // Unmute
-            playAudioIcon.src = "assets/images/sound.png"; // Change icon to unmute
+            // Unmute the audio
+            elephantAudio.volume = 1.0; // Set volume to maximum
+            playAudioIcon.src = "assets/images/sound.png"; // Change icon to sound
+            isMuted = false; // Update mute state
+            elephantAudio.play().catch((error) => {
+              console.error("Error playing audio:", error);
+            });
           } else {
-            elephantAudio.volume = 0.0; // Mute
+            // Mute the audio
+            elephantAudio.volume = 0.0; // Mute the audio
             playAudioIcon.src = "assets/images/sound-mute.png"; // Change icon to mute
+            isMuted = true; // Update mute state
           }
-          isMuted = !isMuted; // Toggle mute state
         });
 
         arSystem.el.addEventListener("targetFound", (event) => {
-          clearTimeout(debounceTimeout);
-          clearTimeout(visibilityTimeout);
+          clearTimeout(debounceTimeout); // Clear previous timeout
+          clearTimeout(visibilityTimeout); // Clear visibility timeout if it exists
           debounceTimeout = setTimeout(() => {
             const model = models[event.detail.targetIndex];
-            model.setAttribute("visible", true);
+            model.setAttribute("visible", true); // Make model visible
 
             if (event.detail.targetIndex === 4) {
               elephantAudio.play().catch((error) => {
                 console.error("Error playing audio:", error);
               });
-              model.setAttribute(
-                "animation-mixer",
-                "clip: Walk; loop: repeat; crossFadeDuration: 1"
-              );
             }
-          }, 1000);
+          }, 1000); // Adjust debounce time as needed
         });
+
+        arSystem.el.addEventListener("targetLost", (event) => {
+          clearTimeout(debounceTimeout); // Clear previous timeout
+          const model = models[event.detail.targetIndex];
+          // Keep the model visible for 1 second after losing the target
+          visibilityTimeout = setTimeout(() => {
+            model.setAttribute("visible", false); // Hide model after 1 second
+          }, 1000); // 1000ms = 1 second
+        });
+
+        models.forEach((model, index) => {
+          model.addEventListener("model-loaded", () => {
+            console.log(`Model ${index + 1} loaded successfully`);
+            model.setAttribute("scale", "4 4 4"); // Set the scale explicitly
+          });
+
+          model.addEventListener("model-error", (error) => {
+            console.error(`Error loading model ${index + 1}:`, error);
+          });
+        });
+
+        const smoothingFactor = 0.9;
+
+        function smoothPosition(current, target) {
+          return current + (target - current) * smoothingFactor;
+        }
+
+        function updateModelPosition(model, targetPosition) {
+          // Calculate the bounding box of the model
+          const box = new THREE.Box3().setFromObject(model.object3D);
+          const center = box.getCenter(new THREE.Vector3());
+
+          // Adjust the model's position to use the center as the pivot point
+          model.object3D.position.x = targetPosition.x - center.x;
+          model.object3D.position.y = targetPosition.y - center.y;
+          model.object3D.position.z = targetPosition.z - center.z;
+        }
+
+        function render() {
+          // Update model positions or any other logic here
+          models.forEach((model, index) => {
+            const targetPosition = { x: 0, y: -0.5, z: 0 };
+            updateModelPosition(model, targetPosition);
+          });
+
+          requestAnimationFrame(render);
+        }
+
+        // Start the rendering loop
+        requestAnimationFrame(render);
       });
     </script>
   </body>
