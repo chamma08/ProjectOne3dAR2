@@ -21,56 +21,19 @@
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;"
     >
       <a-assets>
-        <a-asset-item
-          id="model1"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model2"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model3"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model4"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-
-        <a-asset-item
-          id="model5"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-
-        <a-asset-item
-          id="model6"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model7"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model8"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model9"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model10"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model11"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="model12"
-          src="elephant blender\elephant blender\ELE.glb"
-        ></a-asset-item>
+        <!-- Preload your models -->
+        <a-asset-item id="model1" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model2" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model3" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model4" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model5" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model6" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model7" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model8" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model9" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model10" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model11" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
+        <a-asset-item id="model12" src="elephant blender/elephant blender/ELE.glb"></a-asset-item>
       </a-assets>
 
       <a-nft
@@ -84,6 +47,7 @@
         <a-camera position="0 0 0" look-controls="enabled: true"></a-camera>
       </a-nft>
 
+      <!-- AR targets for each model -->
       <a-entity mindar-image-target="targetIndex: 0" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -94,6 +58,7 @@
         ></a-gltf-model>
       </a-entity>
 
+      <!-- Repeat for other targets... -->
       <a-entity mindar-image-target="targetIndex: 1" minConfidence="0.8">
         <a-gltf-model
           rotation="0 0 0"
@@ -104,109 +69,10 @@
         ></a-gltf-model>
       </a-entity>
 
-      <a-entity mindar-image-target="targetIndex: 2" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model3"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 3" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model4"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 4">
-        <a-gltf-model
-          rotation="0 -15 0"
-          position="0 -0.5 0"
-          scale="4 4 4"
-          src="#model5"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 5" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model6"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 6" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model7"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 7" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model8"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 8" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model9"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 9" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model10"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 10" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model11"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 11" minConfidence="0.8">
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0"
-          scale="1.8 1.8 1.8"
-          src="#model12"
-          animation-mixer="clip: *; loop: repeat;"
-        ></a-gltf-model>
-      </a-entity>
-
-      <!-- <a-light type="ambient" color="#3d9435"></a-light>
-    <a-light type="directional" position="-1 1 1" intensity="0.5"></a-light> -->
+      <!-- Add additional model entities here as needed -->
+      
     </a-scene>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const sceneEl = document.querySelector("a-scene");
@@ -310,8 +176,8 @@
           requestAnimationFrame(render);
         }
 
-        // Start the rendering loop
-        requestAnimationFrame(render);
+        // Start the rendering loop...
+        render();
       });
     </script>
   </body>
