@@ -90,8 +90,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model1"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 1" minConfidence="0.8">
@@ -100,8 +102,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model2"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 2" minConfidence="0.8">
@@ -110,8 +114,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model3"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 3" minConfidence="0.8">
@@ -120,8 +126,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model4"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 4">
@@ -130,8 +138,10 @@
           position="0 -0.5 0"
           scale="4 4 4"
           src="#model5"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 5" minConfidence="0.8">
@@ -140,8 +150,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model6"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 6" minConfidence="0.8">
@@ -150,8 +162,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model7"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 7" minConfidence="0.8">
@@ -160,8 +174,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model8"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 8" minConfidence="0.8">
@@ -170,8 +186,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model9"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 9" minConfidence="0.8">
@@ -180,8 +198,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model10"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 10" minConfidence="0.8">
@@ -190,8 +210,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model11"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 11" minConfidence="0.8">
@@ -200,8 +222,10 @@
           position="0 0 0"
           scale="1.8 1.8 1.8"
           src="#model12"
-          animation-mixer="clip: *; loop: repeat; timeScale: 1">
-        ></a-gltf-model>
+          animation-mixer="clip: *; loop: repeat; timeScale: 1"
+        >
+          ></a-gltf-model
+        >
       </a-entity>
 
       <!-- <a-light type="ambient" color="#3d9435"></a-light>
@@ -249,23 +273,35 @@
         });
 
         arSystem.el.addEventListener("targetFound", (event) => {
-          const model = models[event.detail.targetIndex];
-          model.setAttribute("visible", true);
-          model.setAttribute("animation-mixer", "loop: repeat");
+          clearTimeout(debounceTimeout); // Clear previous timeout
+          clearTimeout(visibilityTimeout); // Clear visibility timeout if it exists
 
-          if (event.detail.targetIndex === 4) {
-            elephantAudio.play().catch((error) => {
-              console.error("Error playing audio:", error);
-            });
-          }
+          debounceTimeout = setTimeout(() => {
+            const model = models[event.detail.targetIndex];
+            model.setAttribute("visible", true); // Make the model visible
+
+            // Add animation-mixer if the target index is the animated model
+            if (event.detail.targetIndex === 4) {
+              // Adjust the index to match your animated model
+              model.setAttribute("animation-mixer", "clip: *; loop: repeat;"); // Play all animations in loop
+              elephantAudio.play().catch((error) => {
+                console.error("Error playing audio:", error);
+              });
+            }
+          }, 1000); // Adjust debounce time as needed
         });
 
         arSystem.el.addEventListener("targetLost", (event) => {
           clearTimeout(debounceTimeout); // Clear previous timeout
           const model = models[event.detail.targetIndex];
+
           // Keep the model visible for 1 second after losing the target
           visibilityTimeout = setTimeout(() => {
             model.setAttribute("visible", false); // Hide model after 1 second
+
+            if (event.detail.targetIndex === 4) {
+              model.removeAttribute("animation-mixer"); // Stop animation
+            }
           }, 1000); // 1000ms = 1 second
         });
 
