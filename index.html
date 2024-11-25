@@ -254,6 +254,7 @@
           debounceTimeout = setTimeout(() => {
             const model = models[event.detail.targetIndex];
             model.setAttribute("visible", true); // Make model visible
+            model.setAttribute("animation-mixer", "loop: repeat"); // Play all animations
 
             if (event.detail.targetIndex === 4) {
               elephantAudio.play().catch((error) => {
