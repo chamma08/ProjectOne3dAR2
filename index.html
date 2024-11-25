@@ -249,19 +249,15 @@
         });
 
         arSystem.el.addEventListener("targetFound", (event) => {
-          clearTimeout(debounceTimeout); // Clear previous timeout
-          clearTimeout(visibilityTimeout); // Clear visibility timeout if it exists
-          debounceTimeout = setTimeout(() => {
-            const model = models[event.detail.targetIndex];
-            model.setAttribute("visible", true); // Make model visible
-            model.setAttribute("animation-mixer", "loop: repeat"); // Play all animations
+          const model = models[event.detail.targetIndex];
+          model.setAttribute("visible", true);
+          model.setAttribute("animation-mixer", "loop: repeat");
 
-            if (event.detail.targetIndex === 4) {
-              elephantAudio.play().catch((error) => {
-                console.error("Error playing audio:", error);
-              });
-            }
-          }, 1000); // Adjust debounce time as needed
+          if (event.detail.targetIndex === 4) {
+            elephantAudio.play().catch((error) => {
+              console.error("Error playing audio:", error);
+            });
+          }
         });
 
         arSystem.el.addEventListener("targetLost", (event) => {
